@@ -8,6 +8,7 @@ import 'package:newsapp/core/widgets/paper_background.dart';
 import 'package:newsapp/features/home/widgets/todo_section.dart';
 import 'package:newsapp/features/home/widgets/growth_space.dart';
 import 'package:newsapp/features/home/widgets/health_tracker.dart';
+import 'package:newsapp/features/home/widgets/daily_callout.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -57,18 +58,6 @@ class HomeScreen extends StatelessWidget {
               ),
             ],
           ),
-          actions: [
-            IconButton(
-              icon: Icon(
-                Icons.search,
-                color: Theme.of(context).colorScheme.primary,
-              ),
-              onPressed: () {
-                // TODO: Implement search
-              },
-              tooltip: 'Search news',
-            ),
-          ],
         ),
         body: RefreshIndicator(
           onRefresh: () async {
@@ -76,48 +65,19 @@ class HomeScreen extends StatelessWidget {
           },
           child: CustomScrollView(
             slivers: [
-              // News Card Swiper Section with Search
-              SliverPadding(
-                padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0),
+              // Daily Callout Section
+              const SliverPadding(
+                padding: EdgeInsets.all(16.0),
                 sliver: SliverToBoxAdapter(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // Search Bar
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).colorScheme.surface,
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(
-                            color: Theme.of(context).colorScheme.outline.withOpacity(0.1),
-                          ),
-                        ),
-                        child: TextField(
-                          decoration: InputDecoration(
-                            hintText: 'Search for inspiration...',
-                            hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5),
-                            ),
-                            prefixIcon: Icon(
-                              Icons.search,
-                              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5),
-                              size: 20,
-                            ),
-                            border: InputBorder.none,
-                            contentPadding: const EdgeInsets.symmetric(
-                              horizontal: 16,
-                              vertical: 12,
-                            ),
-                          ),
-                          style: Theme.of(context).textTheme.bodyMedium,
-                          cursorColor: Theme.of(context).colorScheme.primary,
-                          cursorWidth: 1,
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                      const NewsCardSwiper(),
-                    ],
-                  ),
+                  child: DailyCallout(),
+                ),
+              ),
+
+              // News Card Swiper Section
+              const SliverPadding(
+                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                sliver: SliverToBoxAdapter(
+                  child: NewsCardSwiper(),
                 ),
               ),
               
