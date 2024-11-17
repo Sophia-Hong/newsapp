@@ -5,6 +5,8 @@ import 'package:newsapp/core/providers/navigation_provider.dart';
 import 'package:newsapp/core/widgets/main_bottom_navigation_bar.dart';
 import 'package:newsapp/features/home/presentation/home_screen.dart';
 import 'package:newsapp/features/news/presentation/news_screen.dart';
+import 'package:newsapp/features/self/presentation/self_screen.dart';
+import 'package:newsapp/features/my/presentation/my_screen.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
   final navigationState = ref.watch(navigationProvider);
@@ -12,29 +14,45 @@ final routerProvider = Provider<GoRouter>((ref) {
   return GoRouter(
     initialLocation: '/',
     routes: [
-      ShellRoute(
-        builder: (context, state, child) {
+      StatefulShellRoute.indexedStack(
+        builder: (context, state, navigationShell) {
           return ScaffoldWithBottomNavBar(
             currentIndex: navigationState,
-            child: child,
+            child: navigationShell,
           );
         },
-        routes: [
-          GoRoute(
-            path: '/',
-            builder: (context, state) => const HomeScreen(),
+        branches: [
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/',
+                builder: (context, state) => const HomeScreen(),
+              ),
+            ],
           ),
-          GoRoute(
-            path: '/news',
-            builder: (context, state) => const NewsScreen(),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/news',
+                builder: (context, state) => const NewsScreen(),
+              ),
+            ],
           ),
-          GoRoute(
-            path: '/self',
-            builder: (context, state) => const Placeholder(), // TODO: Implement Self screen
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/self',
+                builder: (context, state) => const SelfScreen(),
+              ),
+            ],
           ),
-          GoRoute(
-            path: '/my',
-            builder: (context, state) => const Placeholder(), // TODO: Implement My screen
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/my',
+                builder: (context, state) => const MyScreen(),
+              ),
+            ],
           ),
         ],
       ),
@@ -52,29 +70,32 @@ class ScaffoldWithBottomNavBar extends ConsumerWidget {
     required this.currentIndex,
   });
 
+  void _onTap(BuildContext context, WidgetRef ref, int index) {
+    ref.read(navigationProvider.notifier).setIndex(index);
+    
+    switch (index) {
+      case 0:
+        context.go('/');
+        break;
+      case 1:
+        context.go('/news');
+        break;
+      case 2:
+        context.go('/self');
+        break;
+      case 3:
+        context.go('/my');
+        break;
+    }
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: child,
       bottomNavigationBar: MainBottomNavigationBar(
         currentIndex: currentIndex,
-        onTap: (index) {
-          ref.read(navigationProvider.notifier).setIndex(index);
-          switch (index) {
-            case 0:
-              context.go('/');
-              break;
-            case 1:
-              context.go('/news');
-              break;
-            case 2:
-              context.go('/self');
-              break;
-            case 3:
-              context.go('/my');
-              break;
-          }
-        },
+        onTap: (index) => _onTap(context, ref, index),
       ),
     );
   }
