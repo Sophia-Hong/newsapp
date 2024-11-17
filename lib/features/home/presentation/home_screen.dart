@@ -121,14 +121,6 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               
-              // Todo Section
-              SliverPadding(
-                padding: const EdgeInsets.all(16.0),
-                sliver: SliverToBoxAdapter(
-                  child: TodoSection(),
-                ),
-              ),
-
               // Weather Widget Section
               SliverPadding(
                 padding: const EdgeInsets.all(16.0),
@@ -142,6 +134,32 @@ class HomeScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 8),
                       const WeatherWidget(),
+                    ],
+                  ),
+                ),
+              ),
+
+              // Todo Section
+              SliverPadding(
+                padding: const EdgeInsets.all(16.0),
+                sliver: SliverToBoxAdapter(
+                  child: TodoSection(),
+                ),
+              ),
+
+              // Health Tracker Section
+              SliverPadding(
+                padding: const EdgeInsets.all(16.0),
+                sliver: SliverToBoxAdapter(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Health',
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
+                      const SizedBox(height: 8),
+                      const HealthTracker(),
                     ],
                   ),
                 ),
@@ -178,24 +196,6 @@ class HomeScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 8),
                       const GrowthSpace(),
-                    ],
-                  ),
-                ),
-              ),
-
-              // Health Tracker Section
-              SliverPadding(
-                padding: const EdgeInsets.all(16.0),
-                sliver: SliverToBoxAdapter(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Health',
-                        style: Theme.of(context).textTheme.titleLarge,
-                      ),
-                      const SizedBox(height: 8),
-                      const HealthTracker(),
                     ],
                   ),
                 ),
