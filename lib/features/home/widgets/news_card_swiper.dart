@@ -21,8 +21,7 @@ class _NewsCardSwiperState extends State<NewsCardSwiper> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.51
-      ,
+      height: MediaQuery.of(context).size.height * 0.54,
       child: Column(
         children: [
           Expanded(
@@ -54,13 +53,13 @@ class _NewsCardSwiperState extends State<NewsCardSwiper> {
                 (index) => AnimatedContainer(
                   duration: const Duration(milliseconds: 300),
                   margin: const EdgeInsets.symmetric(horizontal: 4),
-                  height: 8,
-                  width: _currentPage == index ? 24 : 8,
+                  height: 6,
+                  width: _currentPage == index ? 28 : 6,
                   decoration: BoxDecoration(
                     color: _currentPage == index 
                         ? Theme.of(context).colorScheme.primary
-                        : Theme.of(context).colorScheme.primary.withOpacity(0.3),
-                    borderRadius: BorderRadius.circular(4),
+                        : Theme.of(context).colorScheme.primary.withOpacity(0.15),
+                    borderRadius: BorderRadius.circular(3),
                   ),
                 ),
               ),

@@ -127,6 +127,65 @@
 - 위치 설정
 - 주식 관심종목 관리
 
+### 6. To-do Section
+#### 6.1 Overview
+- Integration with Google Calendar API (future implementation)
+- Simple and elegant task management
+- Focus on daily tasks and reminders
+
+#### 6.2 Features
+- Task list with completion status
+- Priority indicators (subtle visual cues)
+- Time-based categorization (Today, Upcoming)
+- Quick add functionality
+- Swipe actions for complete/delete
+
+#### 6.3 UI Components
+- Clean, minimal task cards
+- Checkbox with subtle animation
+- Task title with optional time
+- Priority indicator (left border or subtle icon)
+- Progress indicator for daily tasks
+
+#### 6.4 Interactions
+- Swipe right to complete
+- Swipe left to delete
+- Tap to edit (future implementation)
+- Long press for additional options
+
+#### 6.5 Future Integration Points
+- Google Calendar API sync
+- Recurring tasks
+- Task categories/labels
+- Reminders and notifications
+- Task sharing
+
+#### 6.6 Data Structure
+```dart
+class Task {
+  String id;
+  String title;
+  DateTime? dueDate;
+  bool isCompleted;
+  TaskPriority priority;
+  String? note;
+  String? calendarEventId;  // For future Google Calendar sync
+}
+
+enum TaskPriority {
+  low,
+  medium,
+  high
+}
+```
+
+#### 6.7 Design Guidelines
+- Consistent with app's warm color palette
+- Subtle priority indicators
+- Clean typography
+- Proper spacing between tasks
+- Smooth animations for interactions
+
 ## 디자인 가이드라인
 ### 색상
 - Primary: #1A1A1A
@@ -181,7 +240,7 @@
 - [ ] 반응형 레이아웃 검증
 - [ ] 사용성 테스트
 
-### 현재 구현된 기능
+### 현재 ���현된 기능
 1. 기본 프로젝트 구조
 2. 테마 시스템 (라이트/다크 모드)
 3. 네비게이션 시스템

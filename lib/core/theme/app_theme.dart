@@ -30,7 +30,27 @@ class AppTheme {
       backgroundColor: warmBackground,
       elevation: 0,
     ),
-    textTheme: GoogleFonts.notoSerifTextTheme(),
+    // Using clean, basic typography
+    textTheme: GoogleFonts.notoSerifTextTheme().copyWith(
+      titleLarge: GoogleFonts.notoSerif(
+        fontSize: 22,
+        fontWeight: FontWeight.w500,
+        letterSpacing: -0.3,
+      ),
+      titleMedium: GoogleFonts.notoSerif(
+        fontSize: 18,
+        fontWeight: FontWeight.w500,
+        letterSpacing: -0.2,
+      ),
+      bodyLarge: GoogleFonts.notoSans(
+        fontSize: 16,
+        letterSpacing: 0.1,
+      ),
+      bodyMedium: GoogleFonts.notoSans(
+        fontSize: 14,
+        letterSpacing: 0.1,
+      ),
+    ),
   );
 
   static final darkTheme = ThemeData(
@@ -55,6 +75,30 @@ class AppTheme {
       backgroundColor: Color(0xFF1A1917),
       elevation: 0,
     ),
-    textTheme: GoogleFonts.notoSerifTextTheme(ThemeData.dark().textTheme),
+    // Using clean, basic typography for dark theme
+    textTheme: GoogleFonts.notoSerifTextTheme(ThemeData.dark().textTheme).copyWith(
+      titleLarge: GoogleFonts.notoSerif(
+        fontSize: 22,
+        fontWeight: FontWeight.w500,
+        letterSpacing: -0.3,
+        color: const Color(0xFFF0EDE6),
+      ),
+      titleMedium: GoogleFonts.notoSerif(
+        fontSize: 18,
+        fontWeight: FontWeight.w500,
+        letterSpacing: -0.2,
+        color: const Color(0xFFF0EDE6),
+      ),
+      bodyLarge: GoogleFonts.notoSans(
+        fontSize: 16,
+        letterSpacing: 0.1,
+        color: const Color(0xFFF0EDE6),
+      ),
+      bodyMedium: GoogleFonts.notoSans(
+        fontSize: 14,
+        letterSpacing: 0.1,
+        color: const Color(0xFFF0EDE6),
+      ),
+    ),
   );
 } 

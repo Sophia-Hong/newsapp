@@ -12,19 +12,10 @@ class PaperBackground extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        // Paper grain effect
+        // Solid color background for now
         Container(
           decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.background,
-            image: DecorationImage(
-              image: const AssetImage('assets/images/paper_grain.png'),
-              repeat: ImageRepeat.repeat,
-              opacity: 0.03, // Very subtle grain
-              colorFilter: ColorFilter.mode(
-                Theme.of(context).colorScheme.primary.withOpacity(0.1),
-                BlendMode.multiply,
-              ),
-            ),
           ),
         ),
         // Content

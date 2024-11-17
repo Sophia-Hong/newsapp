@@ -41,19 +41,3 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-  
-  # Temporarily comment out assets until we have them
-  # assets:
-  #   - assets/images/
-  #   - assets/icons/
-  #   - assets/fonts/
-    
-  # Use system fonts temporarily
-  fonts:
-    - family: NewYork
-      fonts:
-        - asset: assets/fonts/NewYorkMedium-Regular.otf
-        - asset: assets/fonts/NewYorkMedium-Bold.otf
-          weight: 700
-  assets:
-    - assets/images/paper_grain.png

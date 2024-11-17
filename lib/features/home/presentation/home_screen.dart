@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:newsapp/features/home/widgets/news_card_swiper.dart';
 import 'package:newsapp/features/home/widgets/weather_widget.dart';
-import 'package:newsapp/features/home/widgets/stock_ticker.dart';
-import 'package:newsapp/features/home/widgets/history_timeline.dart';
+import 'package:newsapp/features/home/widgets/finance_section.dart';
+import 'package:newsapp/features/home/widgets/time_capsule.dart';
 import 'package:newsapp/core/widgets/paper_background.dart';
+import 'package:newsapp/features/home/widgets/todo_section.dart';
+import 'package:newsapp/features/home/widgets/growth_space.dart';
+import 'package:newsapp/features/home/widgets/health_tracker.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -73,14 +76,59 @@ class HomeScreen extends StatelessWidget {
           },
           child: CustomScrollView(
             slivers: [
-              // News Card Swiper Section
-              const SliverToBoxAdapter(
-                child: Padding(
-                  padding: EdgeInsets.only(top: 16.0),
-                  child: NewsCardSwiper(),
+              // News Card Swiper Section with Search
+              SliverPadding(
+                padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0),
+                sliver: SliverToBoxAdapter(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Search Bar
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.surface,
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(
+                            color: Theme.of(context).colorScheme.outline.withOpacity(0.1),
+                          ),
+                        ),
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: 'Search for inspiration...',
+                            hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5),
+                            ),
+                            prefixIcon: Icon(
+                              Icons.search,
+                              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5),
+                              size: 20,
+                            ),
+                            border: InputBorder.none,
+                            contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 16,
+                              vertical: 12,
+                            ),
+                          ),
+                          style: Theme.of(context).textTheme.bodyMedium,
+                          cursorColor: Theme.of(context).colorScheme.primary,
+                          cursorWidth: 1,
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      const NewsCardSwiper(),
+                    ],
+                  ),
                 ),
               ),
               
+              // Todo Section
+              SliverPadding(
+                padding: const EdgeInsets.all(16.0),
+                sliver: SliverToBoxAdapter(
+                  child: TodoSection(),
+                ),
+              ),
+
               // Weather Widget Section
               SliverPadding(
                 padding: const EdgeInsets.all(16.0),
@@ -99,7 +147,7 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
 
-              // Stock Ticker Section
+              // Finance Section
               SliverPadding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 sliver: SliverToBoxAdapter(
@@ -107,17 +155,17 @@ class HomeScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Market',
+                        'Your Finance',
                         style: Theme.of(context).textTheme.titleLarge,
                       ),
                       const SizedBox(height: 8),
-                      const StockTicker(),
+                      const FinanceSection(),
                     ],
                   ),
                 ),
               ),
 
-              // History Timeline Section
+              // Growth Space Section
               SliverPadding(
                 padding: const EdgeInsets.all(16.0),
                 sliver: SliverToBoxAdapter(
@@ -125,11 +173,47 @@ class HomeScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Today in History',
+                        'Growth Space',
                         style: Theme.of(context).textTheme.titleLarge,
                       ),
                       const SizedBox(height: 8),
-                      const HistoryTimeline(),
+                      const GrowthSpace(),
+                    ],
+                  ),
+                ),
+              ),
+
+              // Health Tracker Section
+              SliverPadding(
+                padding: const EdgeInsets.all(16.0),
+                sliver: SliverToBoxAdapter(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Health',
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
+                      const SizedBox(height: 8),
+                      const HealthTracker(),
+                    ],
+                  ),
+                ),
+              ),
+
+              // Time Capsule Section
+              SliverPadding(
+                padding: const EdgeInsets.all(16.0),
+                sliver: SliverToBoxAdapter(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Time Capsule',
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
+                      const SizedBox(height: 8),
+                      const TimeCapsule(),
                     ],
                   ),
                 ),
