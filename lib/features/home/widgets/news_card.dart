@@ -99,16 +99,20 @@ class NewsCard extends StatelessWidget {
                       // Headline
                       Text(
                         'Sample Headline $index',
-                        style: Theme.of(context).textTheme.titleLarge,
+                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 22,
+                        ),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),
-                      const SizedBox(height: 4),
+                      const SizedBox(height: 6),
                       // Subheadline
                       Text(
                         'This is a sample subheadline for the news article that provides more context about the story.',
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color: Colors.grey[600],
+                          fontSize: 15,
                         ),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
@@ -117,13 +121,20 @@ class NewsCard extends StatelessWidget {
                       // Bottom row
                       Row(
                         children: [
-                          const Icon(Icons.access_time, size: 16),
-                          const SizedBox(width: 4),
-                          Text(
-                            '5 min read',
-                            style: Theme.of(context).textTheme.bodySmall,
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const Icon(Icons.access_time, size: 16),
+                              const SizedBox(width: 4),
+                              Text(
+                                '5 min read',
+                                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                  color: Colors.grey[600],
+                                ),
+                              ),
+                            ],
                           ),
-                          const SizedBox(width: 8),
+                          const SizedBox(width: 12),
                           Container(
                             padding: const EdgeInsets.symmetric(
                               horizontal: 8,
@@ -131,7 +142,7 @@ class NewsCard extends StatelessWidget {
                             ),
                             decoration: BoxDecoration(
                               color: Theme.of(context).colorScheme.primary.withOpacity(0.08),
-                              borderRadius: BorderRadius.circular(12),
+                              borderRadius: BorderRadius.circular(8),
                             ),
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
@@ -144,7 +155,7 @@ class NewsCard extends StatelessWidget {
                                 const SizedBox(width: 4),
                                 Text(
                                   'AI summary',
-                                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                                     color: Theme.of(context).colorScheme.primary,
                                   ),
                                 ),
@@ -152,18 +163,16 @@ class NewsCard extends StatelessWidget {
                             ),
                           ),
                           const Spacer(),
-                          TextButton.icon(
-                            style: TextButton.styleFrom(
-                              visualDensity: VisualDensity.compact,
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 8,
-                              ),
-                            ),
-                            icon: const Icon(Icons.share, size: 16),
-                            label: const Text('Share'),
+                          IconButton(
+                            icon: const Icon(Icons.share, size: 18),
                             onPressed: () {
                               // TODO: Implement share functionality
                             },
+                            visualDensity: VisualDensity.compact,
+                            style: IconButton.styleFrom(
+                              padding: const EdgeInsets.all(8),
+                              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                            ),
                           ),
                         ],
                       ),
