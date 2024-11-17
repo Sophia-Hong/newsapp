@@ -16,10 +16,11 @@ class NewsCard extends StatelessWidget {
       child: Material(
         child: InkWell(
           onTap: () {
-            // TODO: Navigate to news detail
+            // We'll implement navigation later
           },
           borderRadius: BorderRadius.circular(16),
           child: Card(
+            margin: EdgeInsets.zero,
             elevation: 4,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
@@ -58,39 +59,106 @@ class NewsCard extends StatelessWidget {
                           backgroundColor: Colors.black.withOpacity(0.5),
                           foregroundColor: Colors.white,
                         ),
+                        tooltip: 'Bookmark this article',
                       ),
                     ),
                   ],
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(16),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text(
-                        'Sample Headline $index',
-                        style: Theme.of(context).textTheme.headlineMedium,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
+                      // Author info
+                      Row(
+                        children: [
+                          CircleAvatar(
+                            radius: 12,
+                            backgroundImage: NetworkImage(
+                              'https://i.pravatar.cc/150?u=$index',
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          Text(
+                            'John Doe',
+                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          Text(
+                            '• 2 hours ago',
+                            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                              color: Colors.grey[600],
+                            ),
+                          ),
+                        ],
                       ),
                       const SizedBox(height: 8),
+                      // Headline
                       Text(
-                        'This is a sample subheadline for the news article that provides more context about the story.',
-                        style: Theme.of(context).textTheme.bodyLarge,
+                        'Sample Headline $index',
+                        style: Theme.of(context).textTheme.titleLarge,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),
-                      const SizedBox(height: 16),
+                      const SizedBox(height: 4),
+                      // Subheadline
+                      Text(
+                        'This is a sample subheadline for the news article that provides more context about the story.',
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: Colors.grey[600],
+                        ),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      const SizedBox(height: 12),
+                      // Bottom row
                       Row(
                         children: [
                           const Icon(Icons.access_time, size: 16),
                           const SizedBox(width: 4),
                           Text(
                             '5 min read',
-                            style: Theme.of(context).textTheme.bodyMedium,
+                            style: Theme.of(context).textTheme.bodySmall,
+                          ),
+                          const SizedBox(width: 8),
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 8,
+                              vertical: 4,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.primary.withOpacity(0.08),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(
+                                  Icons.auto_awesome,
+                                  size: 14,
+                                  color: Theme.of(context).colorScheme.primary,
+                                ),
+                                const SizedBox(width: 4),
+                                Text(
+                                  'AI summary',
+                                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                    color: Theme.of(context).colorScheme.primary,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                           const Spacer(),
                           TextButton.icon(
+                            style: TextButton.styleFrom(
+                              visualDensity: VisualDensity.compact,
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8,
+                              ),
+                            ),
                             icon: const Icon(Icons.share, size: 16),
                             label: const Text('Share'),
                             onPressed: () {

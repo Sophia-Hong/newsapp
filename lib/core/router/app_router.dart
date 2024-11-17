@@ -4,62 +4,37 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:newsapp/core/constants/app_constants.dart';
 import 'package:newsapp/core/widgets/main_bottom_navigation_bar.dart';
 import 'package:newsapp/features/home/presentation/home_screen.dart';
-import 'package:newsapp/features/splash/splash_screen.dart';
 import 'package:newsapp/features/weather/presentation/weather_screen.dart';
 import 'package:newsapp/features/profile/presentation/profile_screen.dart';
-import 'package:newsapp/features/news/presentation/news_detail_screen.dart';
-
-final _rootNavigatorKey = GlobalKey<NavigatorState>();
-final _shellNavigatorKey = GlobalKey<NavigatorState>();
 
 final routerProvider = Provider<GoRouter>((ref) {
   return GoRouter(
-    navigatorKey: _rootNavigatorKey,
-    initialLocation: AppConstants.splash,
+    initialLocation: AppConstants.home,
     routes: [
-      GoRoute(
-        path: AppConstants.splash,
-        builder: (context, state) => const SplashScreen(),
-      ),
       ShellRoute(
-        navigatorKey: _shellNavigatorKey,
         builder: (context, state, child) {
           return ScaffoldWithBottomNavBar(child: child);
         },
         routes: [
           GoRoute(
             path: AppConstants.home,
-            pageBuilder: (context, state) => NoTransitionPage(
-              child: const HomeScreen(),
-            ),
+            builder: (context, state) => const HomeScreen(),
           ),
           GoRoute(
             path: AppConstants.weather,
-            pageBuilder: (context, state) => NoTransitionPage(
-              child: const WeatherScreen(),
-            ),
+            builder: (context, state) => const WeatherScreen(),
           ),
           GoRoute(
             path: AppConstants.profile,
-            pageBuilder: (context, state) => NoTransitionPage(
-              child: const ProfileScreen(),
-            ),
+            builder: (context, state) => const ProfileScreen(),
           ),
         ],
-      ),
-      GoRoute(
-        parentNavigatorKey: _rootNavigatorKey,
-        path: '/news/:id',
-        builder: (context, state) {
-          final newsId = state.pathParameters['id']!;
-          return NewsDetailScreen(newsId: newsId);
-        },
       ),
     ],
   );
 });
 
-class ScaffoldWithBottomNavBar extends ConsumerWidget {
+class ScaffoldWithBottomNavBar extends StatelessWidget {
   final Widget child;
 
   const ScaffoldWithBottomNavBar({
@@ -68,7 +43,7 @@ class ScaffoldWithBottomNavBar extends ConsumerWidget {
   });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Scaffold(
       body: child,
       bottomNavigationBar: const MainBottomNavigationBar(),
