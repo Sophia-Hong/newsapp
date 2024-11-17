@@ -21,7 +21,8 @@ class _NewsCardSwiperState extends State<NewsCardSwiper> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.6,
+      height: MediaQuery.of(context).size.height * 0.51
+      ,
       child: Column(
         children: [
           Expanded(
@@ -36,15 +37,16 @@ class _NewsCardSwiperState extends State<NewsCardSwiper> {
                 return Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 16.0,
-                    vertical: 8.0,
+                    vertical: 4.0,
                   ),
                   child: NewsCard(index: index),
                 );
               },
             ),
           ),
+          const SizedBox(height: 8),
           Padding(
-            padding: const EdgeInsets.only(bottom: 8.0),
+            padding: const EdgeInsets.only(bottom: 4.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(

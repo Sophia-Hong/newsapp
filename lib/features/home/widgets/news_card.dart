@@ -26,6 +26,7 @@ class NewsCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(16),
             ),
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Stack(
@@ -65,7 +66,7 @@ class NewsCard extends StatelessWidget {
                   ],
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(16),
+                  padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
@@ -95,46 +96,32 @@ class NewsCard extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 8),
+                      const SizedBox(height: 18),
                       // Headline
                       Text(
                         'Sample Headline $index',
                         style: Theme.of(context).textTheme.titleLarge?.copyWith(
                           fontWeight: FontWeight.w600,
-                          fontSize: 22,
+                          fontSize: 23,
                         ),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),
-                      const SizedBox(height: 6),
+                      const SizedBox(height: 8),
                       // Subheadline
                       Text(
                         'This is a sample subheadline for the news article that provides more context about the story.',
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color: Colors.grey[600],
-                          fontSize: 15,
+                          fontSize: 16,
                         ),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),
-                      const SizedBox(height: 12),
+                      const SizedBox(height: 24),
                       // Bottom row
                       Row(
                         children: [
-                          Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              const Icon(Icons.access_time, size: 16),
-                              const SizedBox(width: 4),
-                              Text(
-                                '5 min read',
-                                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                  color: Colors.grey[600],
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(width: 12),
                           Container(
                             padding: const EdgeInsets.symmetric(
                               horizontal: 8,
@@ -161,6 +148,20 @@ class NewsCard extends StatelessWidget {
                                 ),
                               ],
                             ),
+                          ),
+                          const SizedBox(width: 12),
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const Icon(Icons.access_time, size: 16),
+                              const SizedBox(width: 4),
+                              Text(
+                                '5 min read',
+                                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                  color: Colors.grey[600],
+                                ),
+                              ),
+                            ],
                           ),
                           const Spacer(),
                           IconButton(
