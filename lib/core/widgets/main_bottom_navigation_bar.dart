@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:newsapp/core/theme/design_system.dart';
 
 class MainBottomNavigationBar extends StatelessWidget {
   final int currentIndex;
-  final Function(int) onTap;
+  final ValueChanged<int> onTap;
 
   const MainBottomNavigationBar({
     super.key,
@@ -26,65 +27,32 @@ class MainBottomNavigationBar extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
         height: 65,
-        indicatorColor: Colors.transparent,
+        indicatorColor: Theme.of(context).colorScheme.primary.withOpacity(0.1),
         labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
-        destinations: [
-          _buildDestination(
-            context,
+        animationDuration: DesignSystem.animFast,
+        destinations: const [
+          NavigationDestination(
+            icon: Icon(Icons.home_outlined),
+            selectedIcon: Icon(Icons.home_rounded),
             label: 'Today',
-            icon: Icons.home_outlined,
-            selectedIcon: Icons.home_rounded,
-            isSelected: currentIndex == 0,
           ),
-          _buildDestination(
-            context,
+          NavigationDestination(
+            icon: Icon(Icons.article_outlined),
+            selectedIcon: Icon(Icons.article_rounded),
             label: 'News',
-            icon: Icons.article_outlined,
-            selectedIcon: Icons.article_rounded,
-            isSelected: currentIndex == 1,
           ),
-          _buildDestination(
-            context,
+          NavigationDestination(
+            icon: Icon(Icons.auto_awesome_outlined),
+            selectedIcon: Icon(Icons.auto_awesome),
             label: 'Self',
-            icon: Icons.auto_awesome_outlined,
-            selectedIcon: Icons.auto_awesome,
-            isSelected: currentIndex == 2,
           ),
-          _buildDestination(
-            context,
+          NavigationDestination(
+            icon: Icon(Icons.person_outline),
+            selectedIcon: Icon(Icons.person_rounded),
             label: 'My',
-            icon: Icons.person_outline,
-            selectedIcon: Icons.person_rounded,
-            isSelected: currentIndex == 3,
           ),
         ],
       ),
-    );
-  }
-
-  NavigationDestination _buildDestination(
-    BuildContext context, {
-    required String label,
-    required IconData icon,
-    required IconData selectedIcon,
-    required bool isSelected,
-  }) {
-    final color = isSelected 
-        ? Theme.of(context).colorScheme.primary
-        : Theme.of(context).colorScheme.onSurface.withOpacity(0.5);
-
-    return NavigationDestination(
-      icon: Icon(
-        icon,
-        color: color,
-        size: 24,
-      ),
-      selectedIcon: Icon(
-        selectedIcon,
-        color: color,
-        size: 24,
-      ),
-      label: label,
     );
   }
 } 
