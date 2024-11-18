@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:newsapp/core/theme/design_system.dart';
 import 'package:newsapp/features/connect/presentation/widgets/like_minded_section.dart';
+import 'package:newsapp/features/connect/presentation/widgets/keyword_community_section.dart';
 
 class ConnectScreen extends ConsumerWidget {
   const ConnectScreen({super.key});
@@ -28,24 +29,20 @@ class ConnectScreen extends ConsumerWidget {
 
             // Like-minded Section
             const SliverPadding(
-              padding: EdgeInsets.all(DesignSystem.spacing3),
+              padding: EdgeInsets.only(bottom: DesignSystem.spacing3),
               sliver: SliverToBoxAdapter(
                 child: LikeMindedSection(),
               ),
             ),
 
-            // More sections coming soon...
-            SliverPadding(
-              padding: const EdgeInsets.all(DesignSystem.spacing3),
-              sliver: SliverToBoxAdapter(
-                child: Container(
-                  padding: const EdgeInsets.all(DesignSystem.spacing3),
-                  decoration: DesignSystem.cardDecoration,
-                  child: const Center(
-                    child: Text('More features coming soon...'),
-                  ),
-                ),
-              ),
+            // Keyword Community Section
+            const SliverToBoxAdapter(
+              child: KeywordCommunitySection(),
+            ),
+
+            // Bottom spacing
+            const SliverPadding(
+              padding: EdgeInsets.only(bottom: DesignSystem.spacing4),
             ),
           ],
         ),

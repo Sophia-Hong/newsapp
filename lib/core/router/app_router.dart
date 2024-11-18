@@ -16,22 +16,27 @@ final routerProvider = Provider<GoRouter>((ref) {
         routes: [
           GoRoute(
             path: '/',
+            name: 'home',
             builder: (context, state) => const HomeScreen(),
           ),
           GoRoute(
             path: '/news',
+            name: 'news',
             builder: (context, state) => const NewsScreen(),
           ),
           GoRoute(
             path: '/self',
+            name: 'self',
             builder: (context, state) => const SelfScreen(),
           ),
           GoRoute(
             path: '/connect',
+            name: 'connect',
             builder: (context, state) => const ConnectScreen(),
           ),
           GoRoute(
             path: '/my',
+            name: 'my',
             builder: (context, state) => const MyScreen(),
           ),
         ],

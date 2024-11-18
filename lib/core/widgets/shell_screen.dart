@@ -18,19 +18,19 @@ class ShellScreen extends ConsumerWidget {
     
     switch (index) {
       case 0:
-        context.go('/');
+        context.goNamed('home');
         break;
       case 1:
-        context.go('/news');
+        context.goNamed('news');
         break;
       case 2:
-        context.go('/self');
+        context.goNamed('self');
         break;
       case 3:
-        context.go('/connect');
+        context.goNamed('connect');
         break;
       case 4:
-        context.go('/my');
+        context.goNamed('my');
         break;
     }
   }

@@ -1,136 +1,139 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:newsapp/core/widgets/paper_background.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:newsapp/core/theme/design_system.dart';
 
-class MyScreen extends StatelessWidget {
+class MyScreen extends ConsumerWidget {
   const MyScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return PaperBackground(
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          title: Text(
-            'My Space',
-            style: GoogleFonts.notoSerif(
-              textStyle: Theme.of(context).textTheme.titleLarge,
-            ),
-          ),
-        ),
-        body: CustomScrollView(
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
+      body: SafeArea(
+        child: CustomScrollView(
           slivers: [
+            // App Bar
+            SliverAppBar(
+              backgroundColor: Theme.of(context).colorScheme.background,
+              title: Text(
+                'My Space',
+                style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              centerTitle: true,
+              pinned: true,
+            ),
+
             // Profile Section
-            SliverPadding(
-              padding: const EdgeInsets.all(16.0),
-              sliver: SliverToBoxAdapter(
-                child: Card(
-                  elevation: 0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                    side: BorderSide(
-                      color: Theme.of(context).colorScheme.outline.withOpacity(0.1),
-                    ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Row(
-                      children: [
-                        CircleAvatar(
-                          radius: 30,
-                          backgroundColor: Theme.of(context).colorScheme.primary.withOpacity(0.1),
-                          child: Text(
-                            'S',
-                            style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                              color: Theme.of(context).colorScheme.primary,
-                            ),
-                          ),
+            SliverToBoxAdapter(
+              child: Container(
+                margin: const EdgeInsets.all(DesignSystem.spacing3),
+                padding: const EdgeInsets.all(DesignSystem.spacing3),
+                decoration: DesignSystem.cardDecoration,
+                child: Row(
+                  children: [
+                    CircleAvatar(
+                      radius: 30,
+                      backgroundColor: Theme.of(context).colorScheme.primary.withOpacity(0.1),
+                      child: Text(
+                        'S',
+                        style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                          color: Theme.of(context).colorScheme.primary,
                         ),
-                        const SizedBox(width: 16),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Sophie',
-                                style: Theme.of(context).textTheme.titleLarge,
-                              ),
-                              Text(
-                                'Personal Space',
-                                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                  color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
-                                ),
-                              ),
-                            ],
+                      ),
+                    ),
+                    DesignSystem.hSpacing3,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Sophie',
+                          style: Theme.of(context).textTheme.titleLarge,
+                        ),
+                        Text(
+                          'Personal Space',
+                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
                           ),
                         ),
                       ],
                     ),
-                  ),
+                  ],
                 ),
               ),
             ),
 
-            // Settings Section
-            SliverPadding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              sliver: SliverList(
-                delegate: SliverChildListDelegate([
-                  _buildSettingItem(
-                    context,
-                    icon: Icons.notifications_outlined,
-                    title: 'Notifications',
-                  ),
-                  _buildSettingItem(
-                    context,
-                    icon: Icons.color_lens_outlined,
-                    title: 'Appearance',
-                  ),
-                  _buildSettingItem(
-                    context,
-                    icon: Icons.language_outlined,
-                    title: 'Language',
-                  ),
-                  _buildSettingItem(
-                    context,
-                    icon: Icons.help_outline,
-                    title: 'Help & Support',
-                  ),
-                ]),
-              ),
+            // Settings List
+            SliverList(
+              delegate: SliverChildListDelegate([
+                _SettingItem(
+                  icon: Icons.notifications_outlined,
+                  title: 'Notifications',
+                  onTap: () {
+                    // TODO: Navigate to notifications settings
+                  },
+                ),
+                _SettingItem(
+                  icon: Icons.palette_outlined,
+                  title: 'Appearance',
+                  onTap: () {
+                    // TODO: Navigate to appearance settings
+                  },
+                ),
+                _SettingItem(
+                  icon: Icons.language_outlined,
+                  title: 'Language',
+                  onTap: () {
+                    // TODO: Navigate to language settings
+                  },
+                ),
+                _SettingItem(
+                  icon: Icons.help_outline,
+                  title: 'Help & Support',
+                  onTap: () {
+                    // TODO: Navigate to help & support
+                  },
+                ),
+              ]),
             ),
           ],
         ),
       ),
     );
   }
+}
 
-  Widget _buildSettingItem(
-    BuildContext context, {
-    required IconData icon,
-    required String title,
-  }) {
-    return Card(
-      elevation: 0,
-      margin: const EdgeInsets.only(bottom: 8),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-        side: BorderSide(
-          color: Theme.of(context).colorScheme.outline.withOpacity(0.1),
-        ),
+class _SettingItem extends StatelessWidget {
+  final IconData icon;
+  final String title;
+  final VoidCallback onTap;
+
+  const _SettingItem({
+    required this.icon,
+    required this.title,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(
+        horizontal: DesignSystem.spacing3,
+        vertical: DesignSystem.spacing1,
       ),
+      decoration: DesignSystem.cardDecoration,
       child: ListTile(
+        onTap: onTap,
         leading: Icon(
           icon,
-          color: Theme.of(context).colorScheme.primary,
+          color: Theme.of(context).colorScheme.primary.withOpacity(0.7),
         ),
         title: Text(title),
-        trailing: const Icon(Icons.chevron_right),
-        onTap: () {
-          // TODO: Implement settings navigation
-        },
+        trailing: Icon(
+          Icons.chevron_right,
+          color: Theme.of(context).colorScheme.onSurface.withOpacity(0.3),
+        ),
       ),
     );
   }
