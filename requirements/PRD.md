@@ -82,6 +82,97 @@
 - Future messages
 - Interactive timeline
 
+## Self Screen (Growth & Reflection)
+
+### 1. Word Cloud Section
+- Dynamic visualization of user's journey
+  - Keywords from diary entries, learning progress, and interests
+  - Size reflects frequency/importance
+  - Interactive elements
+    - Tap to see related entries
+    - Growth animation on achievements
+    - Category-based coloring
+- Features
+  - Keyword tracking
+  - Growth visualization
+  - Category grouping
+  - Historical trends
+
+### 2. Daily Reflection
+- Thoughtful prompts
+  - Daily questions
+  - Growth-focused
+  - Context-aware suggestions
+  - Personalized topics
+- Features
+  - Rich text input
+  - Mood tracking
+  - Photo attachments
+  - Voice notes (future)
+- Prompts Library
+  - Gratitude prompts
+  - Achievement reflection
+  - Learning insights
+  - Future aspirations
+
+### 3. Learning Progress (Coming Soon)
+- Visual progress tracking
+  - Circular progress indicators
+  - Time spent metrics
+  - Achievement milestones
+  - Weekly/monthly trends
+- Categories
+  - Programming
+  - Design
+  - Business
+  - Personal Development
+- Features
+  - Progress visualization
+  - Achievement badges
+  - Learning streaks
+  - Resource links
+
+### 4. Growth Opportunities (Coming Soon)
+- AI-powered suggestions
+  - Based on interests
+  - Skill gaps analysis
+  - Market trends
+  - Learning paths
+- Features
+  - Job recommendations
+  - Course suggestions
+  - Skill development paths
+  - Industry insights
+
+### Design Guidelines
+- Visual Hierarchy
+  - Section titles outside cards
+  - Clear content grouping
+  - Consistent spacing
+  - Subtle animations
+- Color System
+  - Category-specific colors
+  - Subtle gradients
+  - Status indicators
+  - Progress visualization
+- Typography
+  - Clear section headers
+  - Readable body text
+  - Emphasis on key metrics
+  - Consistent styling
+
+### Interaction Design
+- Smooth Transitions
+  - Section animations
+  - State changes
+  - Loading states
+  - Error handling
+- Input Methods
+  - Text input
+  - Voice notes (planned)
+  - Image upload (planned)
+  - Quick actions
+
 ## Design System
 
 ### Colors

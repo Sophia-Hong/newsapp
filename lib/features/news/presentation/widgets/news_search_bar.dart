@@ -8,9 +8,11 @@ class NewsSearchBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).colorScheme.surface.withOpacity(0.7),
         borderRadius: BorderRadius.circular(DesignSystem.radiusMedium),
-        boxShadow: DesignSystem.shadowSmall,
+        border: Border.all(
+          color: Theme.of(context).colorScheme.outline.withOpacity(0.05),
+        ),
       ),
       child: TextField(
         decoration: InputDecoration(
@@ -30,6 +32,7 @@ class NewsSearchBar extends StatelessWidget {
             horizontal: DesignSystem.spacing3,
             vertical: DesignSystem.spacing2,
           ),
+          fillColor: Colors.transparent,
         ),
       ),
     );
