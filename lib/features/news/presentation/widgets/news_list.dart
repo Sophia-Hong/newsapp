@@ -20,13 +20,11 @@ class NewsList extends ConsumerWidget {
 
     return SliverList(
       delegate: SliverChildBuilderDelegate(
-        (context, index) {
-          if (index >= filteredNews.length) return null;
-          return Padding(
-            padding: const EdgeInsets.only(bottom: DesignSystem.spacing3),
-            child: NewsCard(article: filteredNews[index]),
-          );
-        },
+        (context, index) => Padding(
+          padding: const EdgeInsets.only(bottom: DesignSystem.spacing3),
+          child: NewsCard(article: filteredNews[index]),
+        ),
+        childCount: filteredNews.length,
       ),
     );
   }

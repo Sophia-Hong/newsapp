@@ -52,7 +52,7 @@ class _PersonCard extends StatelessWidget {
     return Container(
       width: 160,
       margin: const EdgeInsets.only(right: DesignSystem.spacing3),
-      decoration: DesignSystem.cardDecoration,
+      decoration: DesignSystem.cardDecoration(context),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

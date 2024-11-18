@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:newsapp/core/theme/design_system.dart';
+import 'package:newsapp/core/theme/theme_provider.dart';
 
 class MyScreen extends ConsumerWidget {
   const MyScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isDarkMode = ref.watch(themeProvider) == ThemeMode.dark;
+
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       body: SafeArea(
@@ -30,7 +33,7 @@ class MyScreen extends ConsumerWidget {
               child: Container(
                 margin: const EdgeInsets.all(DesignSystem.spacing3),
                 padding: const EdgeInsets.all(DesignSystem.spacing3),
-                decoration: DesignSystem.cardDecoration,
+                decoration: DesignSystem.cardDecoration(context),
                 child: Row(
                   children: [
                     CircleAvatar(
@@ -44,20 +47,29 @@ class MyScreen extends ConsumerWidget {
                       ),
                     ),
                     DesignSystem.hSpacing3,
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Sophie',
-                          style: Theme.of(context).textTheme.titleLarge,
-                        ),
-                        Text(
-                          'Personal Space',
-                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Sophie',
+                            style: Theme.of(context).textTheme.titleLarge,
                           ),
-                        ),
-                      ],
+                          Text(
+                            'Personal Space',
+                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    IconButton(
+                      icon: const Icon(Icons.edit_outlined),
+                      onPressed: () {
+                        // TODO: Navigate to profile edit
+                      },
+                      tooltip: 'Edit profile',
                     ),
                   ],
                 ),
@@ -77,8 +89,14 @@ class MyScreen extends ConsumerWidget {
                 _SettingItem(
                   icon: Icons.palette_outlined,
                   title: 'Appearance',
+                  trailing: Switch(
+                    value: isDarkMode,
+                    onChanged: (_) {
+                      ref.read(themeProvider.notifier).toggleTheme();
+                    },
+                  ),
                   onTap: () {
-                    // TODO: Navigate to appearance settings
+                    ref.read(themeProvider.notifier).toggleTheme();
                   },
                 ),
                 _SettingItem(
@@ -108,11 +126,13 @@ class _SettingItem extends StatelessWidget {
   final IconData icon;
   final String title;
   final VoidCallback onTap;
+  final Widget? trailing;
 
   const _SettingItem({
     required this.icon,
     required this.title,
     required this.onTap,
+    this.trailing,
   });
 
   @override
@@ -122,7 +142,7 @@ class _SettingItem extends StatelessWidget {
         horizontal: DesignSystem.spacing3,
         vertical: DesignSystem.spacing1,
       ),
-      decoration: DesignSystem.cardDecoration,
+      decoration: DesignSystem.cardDecoration(context),
       child: ListTile(
         onTap: onTap,
         leading: Icon(
@@ -130,7 +150,7 @@ class _SettingItem extends StatelessWidget {
           color: Theme.of(context).colorScheme.primary.withOpacity(0.7),
         ),
         title: Text(title),
-        trailing: Icon(
+        trailing: trailing ?? Icon(
           Icons.chevron_right,
           color: Theme.of(context).colorScheme.onSurface.withOpacity(0.3),
         ),

@@ -51,7 +51,7 @@ class _CommunityCard extends StatelessWidget {
         right: DesignSystem.spacing3,
         bottom: DesignSystem.spacing2,
       ),
-      decoration: DesignSystem.cardDecoration,
+      decoration: DesignSystem.cardDecoration(context),
       child: Material(
         color: Colors.transparent,
         child: InkWell(

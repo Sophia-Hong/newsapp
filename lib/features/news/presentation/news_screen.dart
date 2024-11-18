@@ -5,6 +5,7 @@ import 'package:newsapp/features/news/domain/news_model.dart';
 import 'package:newsapp/features/news/presentation/widgets/news_search_bar.dart';
 import 'package:newsapp/features/news/presentation/widgets/category_chips.dart';
 import 'package:newsapp/features/news/presentation/widgets/news_list.dart';
+import 'package:newsapp/features/news/presentation/widgets/personal_history_news.dart';
 
 class NewsScreen extends ConsumerWidget {
   const NewsScreen({super.key});
@@ -16,45 +17,75 @@ class NewsScreen extends ConsumerWidget {
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
-            // App Bar with adjusted padding
+            // App Bar
+            SliverAppBar(
+              backgroundColor: Theme.of(context).colorScheme.background,
+              title: Text(
+                'News for Sophie',
+                style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              centerTitle: true,
+              pinned: true,
+            ),
+            
+            // Search Bar
             SliverPadding(
               padding: const EdgeInsets.symmetric(
                 horizontal: DesignSystem.spacing3,
-              ),
-              sliver: SliverAppBar(
-                floating: true,
-                backgroundColor: Theme.of(context).colorScheme.background,
-                leadingWidth: 40,
-                leading: IconButton(
-                  icon: const Icon(Icons.chevron_left),
-                  onPressed: () => Navigator.pop(context),
-                ),
-                title: Text(
-                  'News for Sophie',
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                centerTitle: true,
-              ),
-            ),
-            
-            // Search Bar with adjusted padding and position
-            SliverPadding(
-              padding: const EdgeInsets.only(
-                left: DesignSystem.spacing3,
-                right: DesignSystem.spacing3,
-                bottom: DesignSystem.spacing3,
+                vertical: DesignSystem.spacing2,
               ),
               sliver: const SliverToBoxAdapter(
                 child: NewsSearchBar(),
               ),
             ),
 
-            // Category Chips with adjusted padding
+            // Personal History Section Title
             SliverPadding(
-              padding: const EdgeInsets.only(
-                bottom: DesignSystem.spacing3,
+              padding: const EdgeInsets.symmetric(
+                horizontal: DesignSystem.spacing3,
+                vertical: DesignSystem.spacing2,
+              ),
+              sliver: SliverToBoxAdapter(
+                child: Text(
+                  'News from Myself',
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+            ),
+
+            // Personal History News
+            const SliverPadding(
+              padding: EdgeInsets.symmetric(horizontal: DesignSystem.spacing3),
+              sliver: SliverToBoxAdapter(
+                child: PersonalHistoryNews(),
+              ),
+            ),
+
+            // Outside News Section Title
+            SliverPadding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: DesignSystem.spacing3,
+                vertical: DesignSystem.spacing2,
+              ),
+              sliver: SliverToBoxAdapter(
+                child: Text(
+                  'News from Outside',
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+            ),
+
+            // Category Chips
+            SliverPadding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: DesignSystem.spacing3,
+                vertical: DesignSystem.spacing2,
               ),
               sliver: SliverToBoxAdapter(
                 child: CategoryChips(
@@ -66,15 +97,13 @@ class NewsScreen extends ConsumerWidget {
               ),
             ),
 
-            // News List with adjusted padding
+            // News List
             const SliverPadding(
-              padding: EdgeInsets.symmetric(
-                horizontal: DesignSystem.spacing3,
-              ),
+              padding: EdgeInsets.symmetric(horizontal: DesignSystem.spacing3),
               sliver: NewsList(),
             ),
 
-            // Bottom padding for list
+            // Bottom padding
             const SliverPadding(
               padding: EdgeInsets.only(bottom: DesignSystem.spacing4),
             ),

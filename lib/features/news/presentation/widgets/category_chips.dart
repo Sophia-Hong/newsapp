@@ -28,51 +28,36 @@ class CategoryChips extends ConsumerWidget {
           final isSelected = category == selectedCategory;
           return Padding(
             padding: const EdgeInsets.only(right: DesignSystem.spacing2),
-            child: AnimatedContainer(
-              duration: DesignSystem.animFast,
-              curve: Curves.easeInOut,
-              child: Material(
-                color: Colors.transparent,
-                child: InkWell(
-                  onTap: () {
-                    ref.read(selectedCategoryProvider.notifier).state = category;
-                    onCategorySelected(category);
-                  },
-                  borderRadius: BorderRadius.circular(DesignSystem.radiusSmall),
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: DesignSystem.spacing3,
-                      vertical: DesignSystem.spacing2,
+            child: Material(
+              color: Colors.transparent,
+              child: InkWell(
+                onTap: () {
+                  ref.read(selectedCategoryProvider.notifier).state = category;
+                  onCategorySelected(category);
+                },
+                borderRadius: BorderRadius.circular(DesignSystem.radiusSmall),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: DesignSystem.spacing3,
+                    vertical: DesignSystem.spacing2,
+                  ),
+                  decoration: BoxDecoration(
+                    color: isSelected 
+                        ? Theme.of(context).colorScheme.surface
+                        : Colors.transparent,
+                    borderRadius: BorderRadius.circular(DesignSystem.radiusSmall),
+                    border: Border.all(
+                      color: isSelected
+                          ? Theme.of(context).colorScheme.primary
+                          : Theme.of(context).colorScheme.outline.withOpacity(0.1),
                     ),
-                    decoration: BoxDecoration(
-                      color: isSelected 
-                          ? Theme.of(context).colorScheme.primary.withOpacity(0.1)
-                          : Colors.white,
-                      borderRadius: BorderRadius.circular(DesignSystem.radiusSmall),
-                      border: Border.all(
-                        color: isSelected
-                            ? Theme.of(context).colorScheme.primary
-                            : Theme.of(context).colorScheme.outline.withOpacity(0.1),
-                        width: 1,
-                      ),
-                      boxShadow: isSelected 
-                          ? null 
-                          : [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.02),
-                                blurRadius: 2,
-                                offset: const Offset(0, 1),
-                              ),
-                            ],
-                    ),
-                    child: Text(
-                      category.displayName,
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: isSelected
-                            ? Theme.of(context).colorScheme.primary
-                            : Theme.of(context).colorScheme.onSurface.withOpacity(0.8),
-                        fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
-                      ),
+                  ),
+                  child: Text(
+                    category.displayName,
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: isSelected
+                          ? Theme.of(context).colorScheme.primary
+                          : Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
                     ),
                   ),
                 ),

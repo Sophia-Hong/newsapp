@@ -23,7 +23,7 @@ class WordCloudSection extends StatelessWidget {
           ),
         ),
         Container(
-          decoration: DesignSystem.cardDecoration,
+          decoration: DesignSystem.cardDecoration(context),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(DesignSystem.radiusSmall),
             child: CachedNetworkImage(

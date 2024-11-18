@@ -8,7 +8,7 @@ class LearningProgressSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: DesignSystem.cardDecoration,
+      decoration: DesignSystem.cardDecoration(context),
       padding: const EdgeInsets.all(DesignSystem.spacing3),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

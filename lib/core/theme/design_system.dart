@@ -31,17 +31,35 @@ class DesignSystem {
     ),
   ];
 
-  // Card Decorations
-  static BoxDecoration get cardDecoration => BoxDecoration(
-    color: Colors.white.withOpacity(0.9),
+  // Card Decorations - Now theme aware
+  static BoxDecoration cardDecoration(BuildContext context) => BoxDecoration(
+    color: Theme.of(context).colorScheme.surface,
     borderRadius: BorderRadius.circular(radiusMedium),
-    boxShadow: shadowSmall,
+    border: Border.all(
+      color: Theme.of(context).colorScheme.outline.withOpacity(0.1),
+    ),
+    boxShadow: [
+      BoxShadow(
+        color: Theme.of(context).colorScheme.shadow.withOpacity(0.05),
+        blurRadius: 4,
+        offset: const Offset(0, 2),
+      ),
+    ],
   );
 
-  static BoxDecoration get elevatedCardDecoration => BoxDecoration(
-    color: Colors.white.withOpacity(0.95),
+  static BoxDecoration elevatedCardDecoration(BuildContext context) => BoxDecoration(
+    color: Theme.of(context).colorScheme.surface,
     borderRadius: BorderRadius.circular(radiusMedium),
-    boxShadow: shadowMedium,
+    border: Border.all(
+      color: Theme.of(context).colorScheme.outline.withOpacity(0.1),
+    ),
+    boxShadow: [
+      BoxShadow(
+        color: Theme.of(context).colorScheme.shadow.withOpacity(0.08),
+        blurRadius: 8,
+        offset: const Offset(0, 4),
+      ),
+    ],
   );
 
   // Animation Durations
@@ -67,14 +85,16 @@ class DesignSystem {
   static const SizedBox hSpacing4 = SizedBox(width: spacing4);
   static const SizedBox hSpacing5 = SizedBox(width: spacing5);
 
-  // Input Decorations
-  static InputDecoration get inputDecoration => InputDecoration(
+  // Input Decorations - Now theme aware
+  static InputDecoration inputDecoration(BuildContext context) => InputDecoration(
     border: OutlineInputBorder(
       borderRadius: BorderRadius.circular(radiusSmall),
-      borderSide: BorderSide.none,
+      borderSide: BorderSide(
+        color: Theme.of(context).colorScheme.outline.withOpacity(0.1),
+      ),
     ),
     filled: true,
-    fillColor: Colors.white,
+    fillColor: Theme.of(context).colorScheme.surface,
     contentPadding: const EdgeInsets.symmetric(
       horizontal: spacing3,
       vertical: spacing2,

@@ -25,7 +25,7 @@ class LearningJourneySection extends StatelessWidget {
         ),
         Container(
           padding: const EdgeInsets.all(DesignSystem.spacing3),
-          decoration: DesignSystem.cardDecoration,
+          decoration: DesignSystem.cardDecoration(context),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

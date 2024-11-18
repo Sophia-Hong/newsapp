@@ -14,81 +14,65 @@ class NewsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(DesignSystem.radiusMedium),
-        boxShadow: DesignSystem.shadowSmall,
-      ),
-      child: InkWell(
-        onTap: () {
-          // TODO: Navigate to article detail
-        },
-        borderRadius: BorderRadius.circular(DesignSystem.radiusMedium),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Thumbnail
-            ClipRRect(
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(DesignSystem.radiusMedium),
-                bottomLeft: Radius.circular(DesignSystem.radiusMedium),
-              ),
-              child: CachedNetworkImage(
-                imageUrl: article.imageUrl,
-                width: 120,
-                height: 120,
-                fit: BoxFit.cover,
-                placeholder: (context, url) => Container(
-                  color: Theme.of(context).colorScheme.surface,
+      height: 120,
+      decoration: DesignSystem.cardDecoration(context),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: () {
+            // TODO: Navigate to article detail
+          },
+          borderRadius: BorderRadius.circular(DesignSystem.radiusMedium),
+          child: Row(
+            children: [
+              ClipRRect(
+                borderRadius: const BorderRadius.horizontal(
+                  left: Radius.circular(DesignSystem.radiusMedium),
                 ),
-                errorWidget: (context, url, error) => const Icon(Icons.error),
+                child: SizedBox(
+                  width: 120,
+                  height: double.infinity,
+                  child: CachedNetworkImage(
+                    imageUrl: article.imageUrl,
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
-            ),
-            // Content
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(DesignSystem.spacing3),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      article.title,
-                      style: Theme.of(context).textTheme.titleMedium,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    DesignSystem.vSpacing2,
-                    Text(
-                      article.description,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
-                      ),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    DesignSystem.vSpacing2,
-                    Row(
-                      children: [
-                        Text(
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(DesignSystem.spacing3),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: DesignSystem.spacing2,
+                          vertical: DesignSystem.spacing1,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
+                          borderRadius: BorderRadius.circular(DesignSystem.radiusSmall),
+                        ),
+                        child: Text(
                           article.category,
                           style: Theme.of(context).textTheme.bodySmall?.copyWith(
                             color: Theme.of(context).colorScheme.primary,
                           ),
                         ),
-                        const Spacer(),
-                        Text(
-                          '${article.readTime} min read',
-                          style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
+                      ),
+                      DesignSystem.vSpacing2,
+                      Text(
+                        article.title,
+                        style: Theme.of(context).textTheme.titleSmall,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
