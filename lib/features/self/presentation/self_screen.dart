@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:newsapp/core/theme/design_system.dart';
 import 'package:newsapp/features/self/presentation/widgets/word_cloud_section.dart';
 import 'package:newsapp/features/self/presentation/widgets/diary_section.dart';
+import 'package:newsapp/features/self/presentation/widgets/learning_journey_section.dart';
 
 class SelfScreen extends ConsumerWidget {
   const SelfScreen({super.key});
@@ -18,7 +19,7 @@ class SelfScreen extends ConsumerWidget {
             SliverAppBar(
               backgroundColor: Theme.of(context).colorScheme.background,
               title: Text(
-                'Growth & Reflection',
+                'Where I am',
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.w600,
                 ),
@@ -43,6 +44,17 @@ class SelfScreen extends ConsumerWidget {
               ),
               sliver: SliverToBoxAdapter(
                 child: DiarySection(),
+              ),
+            ),
+
+            // Learning Journey Section
+            const SliverPadding(
+              padding: EdgeInsets.symmetric(
+                horizontal: DesignSystem.spacing3,
+                vertical: DesignSystem.spacing2,
+              ),
+              sliver: SliverToBoxAdapter(
+                child: LearningJourneySection(),
               ),
             ),
 

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:newsapp/features/home/presentation/home_screen.dart';
 import 'package:newsapp/features/news/presentation/news_screen.dart';
 import 'package:newsapp/features/self/presentation/self_screen.dart';
+import 'package:newsapp/features/connect/presentation/connect_screen.dart';
 import 'package:newsapp/features/my/presentation/my_screen.dart';
 import 'package:newsapp/core/widgets/shell_screen.dart';
 
@@ -24,6 +25,10 @@ final routerProvider = Provider<GoRouter>((ref) {
           GoRoute(
             path: '/self',
             builder: (context, state) => const SelfScreen(),
+          ),
+          GoRoute(
+            path: '/connect',
+            builder: (context, state) => const ConnectScreen(),
           ),
           GoRoute(
             path: '/my',

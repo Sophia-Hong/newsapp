@@ -27,6 +27,9 @@ class ShellScreen extends ConsumerWidget {
         context.go('/self');
         break;
       case 3:
+        context.go('/connect');
+        break;
+      case 4:
         context.go('/my');
         break;
     }
@@ -40,8 +43,10 @@ class ShellScreen extends ConsumerWidget {
         return 1;
       case '/self':
         return 2;
-      case '/my':
+      case '/connect':
         return 3;
+      case '/my':
+        return 4;
       default:
         return 0;
     }

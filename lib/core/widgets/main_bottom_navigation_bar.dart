@@ -47,6 +47,11 @@ class MainBottomNavigationBar extends StatelessWidget {
             label: 'Self',
           ),
           NavigationDestination(
+            icon: Icon(Icons.people_outline),
+            selectedIcon: Icon(Icons.people_rounded),
+            label: 'Connect',
+          ),
+          NavigationDestination(
             icon: Icon(Icons.person_outline),
             selectedIcon: Icon(Icons.person_rounded),
             label: 'My',

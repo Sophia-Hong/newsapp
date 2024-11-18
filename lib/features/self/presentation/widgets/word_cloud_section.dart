@@ -16,7 +16,7 @@ class WordCloudSection extends StatelessWidget {
             bottom: DesignSystem.spacing2,
           ),
           child: Text(
-            'My Current Keywords',
+            'Current Keywords',
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
               fontWeight: FontWeight.w600,
             ),
